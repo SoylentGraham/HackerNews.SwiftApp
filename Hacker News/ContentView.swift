@@ -5,18 +5,10 @@ struct ContentView: View {
     @State private var authManager = HNAuthManager()
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
 
-    var body: some View {
-        NavigationSplitView(
-            columnVisibility: $columnVisibility
-        ) {
-            Group {
-                SidebarView(viewModel: viewModel)
-                    .toolbar(removing: .sidebarToggle)
-            }
-            .navigationSplitViewColumnWidth(min: 250, ideal: 375, max: 375)
-        } detail: {
-            DetailView(viewModel: viewModel, authManager: authManager, columnVisibility: $columnVisibility)
-        }
+    var body: some View 
+	{
+        //TwoColumnView()
+		PortraitView()
         .task {
             await authManager.restoreSession()
             viewModel.loggedInUsername = authManager.isLoggedIn ? authManager.username : nil
@@ -34,11 +26,36 @@ struct ContentView: View {
         .onChange(of: viewModel.appearanceMode) {
             applyAppearance(viewModel.appearanceMode)
         }
-        .frame(minWidth: 900, minHeight: 600)
         .navigationTitle("Hacker News")
         .background(WindowTabTitleSetter(title: tabTitle))
         .focusedSceneValue(\.feedViewModel, viewModel)
     }
+	
+	@ViewBuilder func PortraitView() -> some View
+	{
+		VStack
+		{
+			SidebarView(viewModel: viewModel)
+			DetailView(viewModel: viewModel, authManager: authManager, columnVisibility: $columnVisibility)
+		}
+		.frame(maxWidth: .infinity,maxHeight: .infinity)
+	}
+	
+	@ViewBuilder func TwoColumnView() -> some View
+	{
+		NavigationSplitView(
+			columnVisibility: $columnVisibility
+		) {
+			Group {
+				SidebarView(viewModel: viewModel)
+					.toolbar(removing: .sidebarToggle)
+			}
+			.navigationSplitViewColumnWidth(min: 250, ideal: 375, max: 375)
+		} detail: {
+			DetailView(viewModel: viewModel, authManager: authManager, columnVisibility: $columnVisibility)
+		}
+		.frame(minWidth: 900, minHeight: 600)
+	}
 
     private var tabTitle: String {
         if viewModel.showingSettings {
