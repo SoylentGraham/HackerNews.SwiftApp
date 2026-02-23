@@ -1,36 +1,6 @@
 import SwiftUI
 #if canImport(Sparkle)
 import Sparkle
-#else
-struct SPUUpdater
-{
-	var automaticallyChecksForUpdates = false
-	
-	func checkForUpdatesInBackground()
-	{
-	}
-	
-	func checkForUpdates()
-	{
-	}
-	
-	func observe(_ key:KeyPath<SPUUpdater,Int>,_ callback:(Self,Int)->Void)
-	{
-	}
-}
-struct SPUUpdatedDelegate
-{
-}
-struct SPUUserDriverDelegate
-{
-}
-struct SPUStandardUpdaterController
-{
-	var startingUpdater : Bool
-	var updaterDelegate: SPUUpdatedDelegate?
-	var userDriverDelegate : SPUUserDriverDelegate?
-	var updater = SPUUpdater()
-}
 #endif
 
 
@@ -90,7 +60,7 @@ struct Hacker_NewsApp: App {
                     }
                 }
         }
-        .defaultSize(width: 1200, height: 800)
+        //.defaultSize(width: 1200, height: 800)
         .commands {
             CommandGroup(after: .appInfo) {
                 Button("Check for Updates...") {
