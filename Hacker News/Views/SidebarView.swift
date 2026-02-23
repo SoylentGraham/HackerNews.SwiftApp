@@ -169,7 +169,7 @@ private struct RowSelectionObserver: NSViewRepresentable {
 }
 
 private class RowSelectionNSView: NSView {
-	/*
+#if canImport(AppKit)
     var onSelectionChange: ((Bool) -> Void)?
     private var selectedObservation: NSKeyValueObservation?
     private var emphasizedObservation: NSKeyValueObservation?
@@ -225,5 +225,5 @@ private class RowSelectionNSView: NSView {
         }
         return false
     }
-	 */
+#endif
 }
