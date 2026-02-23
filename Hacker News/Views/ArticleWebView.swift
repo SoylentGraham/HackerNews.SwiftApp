@@ -676,7 +676,11 @@ class WebViewProxy {
     }
 }
 
-struct ArticleWebView: NSViewRepresentable {
+struct ArticleWebView: NSViewRepresentable 
+{
+	typealias NSViewType = WKWebView
+	typealias UIViewType = WKWebView
+	
     let url: URL
     let adBlockingEnabled: Bool
     let popUpBlockingEnabled: Bool
@@ -741,6 +745,11 @@ struct ArticleWebView: NSViewRepresentable {
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }
+	
+	func makeUIView(context: Context) -> WKWebView {
+		return makeNSView(context: context)
+	}
+
 
     func makeNSView(context: Context) -> WKWebView {
         let config = WKWebViewConfiguration()
@@ -790,11 +799,13 @@ struct ArticleWebView: NSViewRepresentable {
         webView.allowsBackForwardNavigationGestures = true
         webView.navigationDelegate = context.coordinator
         webView.uiDelegate = context.coordinator
+#if canImport(AppKit)
         let appearance = NSAppearance(named: colorScheme == .dark ? .darkAqua : .aqua)!
         webView.appearance = appearance
         appearance.performAsCurrentDrawingAppearance {
             webView.underPageBackgroundColor = .windowBackgroundColor
         }
+#endif
         webView.pageZoom = CGFloat(textScale)
         webViewProxy?.webView = webView
         context.coordinator.currentURL = url
@@ -802,13 +813,19 @@ struct ArticleWebView: NSViewRepresentable {
         return webView
     }
 
+	func updateUIView(_ webView: WKWebView, context: Context) {
+		updateNSView(webView,context: context)
+	}
+	
     func updateNSView(_ webView: WKWebView, context: Context) {
         context.coordinator.parent = self
+#if canImport(AppKit)
         let appearance = NSAppearance(named: colorScheme == .dark ? .darkAqua : .aqua)!
         webView.appearance = appearance
         appearance.performAsCurrentDrawingAppearance {
             webView.underPageBackgroundColor = .windowBackgroundColor
         }
+#endif
         let scheme = colorScheme == .dark ? "dark" : "light"
         webView.evaluateJavaScript("if (location.hostname.indexOf('ycombinator.com') !== -1) { document.documentElement.style.colorScheme = '\(scheme)'; }", completionHandler: nil)
         webView.pageZoom = CGFloat(textScale)

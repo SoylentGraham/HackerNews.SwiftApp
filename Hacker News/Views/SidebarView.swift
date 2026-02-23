@@ -137,25 +137,39 @@ private struct RowSelectionReader<Content: View>: View {
 
     var body: some View {
         content(isSelected)
-            .background(RowSelectionObserver(isSelected: $isSelected))
+            .background
+		{
+			RowSelectionObserver(isSelected: $isSelected)
+		}
     }
 }
 
 private struct RowSelectionObserver: NSViewRepresentable {
     @Binding var isSelected: Bool
+	typealias UIViewType = RowSelectionNSView
+	typealias NSViewType = RowSelectionNSView
 
-    func makeNSView(context: Context) -> RowSelectionNSView {
+    func makeNSView(context: Context) -> NSViewType {
         let view = RowSelectionNSView()
+		#if canImport(AppKit)
         view.onSelectionChange = { selected in
             isSelected = selected
         }
+		#endif
         return view
     }
+	
+	func makeUIView(context: Context) -> UIViewType 
+	{
+		return makeNSView(context: context)
+	}
 
-    func updateNSView(_ nsView: RowSelectionNSView, context: Context) {}
+	func updateNSView(_ nsView: NSViewType, context: Context) {}
+	func updateUIView(_ nsView: UIViewType, context: Context) {	updateNSView(nsView, context: context)}
 }
 
 private class RowSelectionNSView: NSView {
+	/*
     var onSelectionChange: ((Bool) -> Void)?
     private var selectedObservation: NSKeyValueObservation?
     private var emphasizedObservation: NSKeyValueObservation?
@@ -211,4 +225,5 @@ private class RowSelectionNSView: NSView {
         }
         return false
     }
+	 */
 }

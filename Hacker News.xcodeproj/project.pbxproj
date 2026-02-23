@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E040D1582F47EE97007E12CE /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = E040D1572F47EE97007E12CE /* Sparkle */; };
 		E0D8E4DF2F43C68E00BA2D5C /* HackerNews.icon in Resources */ = {isa = PBXBuildFile; fileRef = E0D8E4DE2F43C68E00BA2D5C /* HackerNews.icon */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +41,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E040D1582F47EE97007E12CE /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +84,6 @@
 			);
 			name = "Hacker News";
 			packageProductDependencies = (
-				E040D1572F47EE97007E12CE /* Sparkle */,
 			);
 			productName = "Hacker News";
 			productReference = E0D8E4A32F43A35200BA2D5C /* Hacker News.app */;
@@ -117,7 +114,6 @@
 			mainGroup = E0D8E49A2F43A35200BA2D5C;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				E040D1562F47EE97007E12CE /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E0D8E4A42F43A35200BA2D5C /* Products */;
@@ -285,7 +281,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 41;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 69Y3X8R7D7;
+				DEVELOPMENT_TEAM = 2Z7A93M5G3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
@@ -296,21 +292,25 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Hacker News";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.magazines-and-newspapers";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.2.9;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.IronsideXXVI.Hacker-News";
+				PRODUCT_BUNDLE_IDENTIFIER = com.newchromantics.hackernews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -324,7 +324,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 41;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 69Y3X8R7D7;
+				DEVELOPMENT_TEAM = 2Z7A93M5G3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
@@ -335,21 +335,25 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Hacker News";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.magazines-and-newspapers";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.2.9;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.IronsideXXVI.Hacker-News";
+				PRODUCT_BUNDLE_IDENTIFIER = com.newchromantics.hackernews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -375,25 +379,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		E040D1562F47EE97007E12CE /* XCRemoteSwiftPackageReference "Sparkle" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sparkle-project/Sparkle";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.8.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		E040D1572F47EE97007E12CE /* Sparkle */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E040D1562F47EE97007E12CE /* XCRemoteSwiftPackageReference "Sparkle" */;
-			productName = Sparkle;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E0D8E49B2F43A35200BA2D5C /* Project object */;
 }

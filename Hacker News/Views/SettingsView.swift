@@ -1,5 +1,7 @@
 import SwiftUI
+#if canImport(Sparkle)
 import Sparkle
+#endif
 
 struct SettingsView: View {
     @Bindable var viewModel: FeedViewModel
@@ -57,7 +59,7 @@ struct SettingsView: View {
                 Text("Web Content")
             }
 
-            if let updater {
+            if var updater {
                 Section {
                     Toggle(
                         "Automatically check for updates",

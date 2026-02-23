@@ -155,8 +155,9 @@ struct DetailView: View {
             }
             if currentExternalURL != nil {
                 Button {
-                    if let url = currentExternalURL {
-                        NSWorkspace.shared.open(url)
+                    if let url = currentExternalURL 
+					{
+						OpenUrlInExternalApp(url)
                     }
                 } label: {
                     Image(systemName: "safari")
@@ -585,7 +586,7 @@ struct DetailView: View {
                 .multilineTextAlignment(.center)
             if let url {
                 Button("Open in Browser") {
-                    NSWorkspace.shared.open(url)
+					OpenUrlInExternalApp(url)
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.orange)

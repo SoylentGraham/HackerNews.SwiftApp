@@ -1,5 +1,9 @@
-import AppKit
 import Foundation
+#if canImport(AppKit)
+import AppKit
+#else
+import UIKit
+#endif
 
 actor ImageCacheService {
     static let shared = ImageCacheService()

@@ -16,6 +16,30 @@ enum NavigationEntry: Equatable {
 enum AppearanceMode: String, CaseIterable {
     case light, dark, system
 
+	#if canImport(UIKit)
+	var uiUserInterfaceStyle : UIUserInterfaceStyle
+	{
+		switch self
+		{
+			case .dark:		.dark
+			case .light:	.light
+			case .system:	.unspecified
+		}
+	}
+	#endif
+	
+	#if canImport(AppKit)
+	var nsAppearance : NSAppearance?
+	{
+		switch self
+		{
+			case .dark:		NSAppearance(named: .darkAqua)
+			case .light:	NSAppearance(named: .aqua)
+			case .system:	nil
+		}
+	}
+	#endif
+	
     var colorScheme: ColorScheme? {
         switch self {
         case .system: nil

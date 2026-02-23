@@ -1,14 +1,21 @@
 import Combine
+import Foundation
+#if canImport(Sparkle)
 import Sparkle
+#endif
 
-final class CheckForUpdatesViewModel: ObservableObject {
+
+final class CheckForUpdatesViewModel : ObservableObject 
+{
     @Published var canCheckForUpdates = false
 
-    private let updater: SPUUpdater
+    private let updater: any AppUpdater
     private var observation: NSKeyValueObservation?
 
-    init(updater: SPUUpdater) {
+	init(updater: any AppUpdater) 
+	{
         self.updater = updater
+#if canImport(Sparkle)
         observation = updater.observe(
             \.canCheckForUpdates,
             options: [.initial, .new]
@@ -17,6 +24,7 @@ final class CheckForUpdatesViewModel: ObservableObject {
                 self?.canCheckForUpdates = updater.canCheckForUpdates
             }
         }
+		#endif
     }
 
     func checkForUpdates() {

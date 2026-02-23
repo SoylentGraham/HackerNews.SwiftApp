@@ -9,6 +9,7 @@ struct StoryGridView: View {
 
     var body: some View {
         Group {
+			/*
             if viewModel.stories.isEmpty && viewModel.showLoadingIndicator {
                 VStack(spacing: 12) {
                     ProgressView()
@@ -45,6 +46,7 @@ struct StoryGridView: View {
                 }
                 .background(Color(.windowBackgroundColor))
             }
+			 */
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

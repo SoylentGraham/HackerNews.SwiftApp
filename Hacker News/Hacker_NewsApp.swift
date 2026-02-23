@@ -1,5 +1,38 @@
 import SwiftUI
+#if canImport(Sparkle)
 import Sparkle
+#else
+struct SPUUpdater
+{
+	var automaticallyChecksForUpdates = false
+	
+	func checkForUpdatesInBackground()
+	{
+	}
+	
+	func checkForUpdates()
+	{
+	}
+	
+	func observe(_ key:KeyPath<SPUUpdater,Int>,_ callback:(Self,Int)->Void)
+	{
+	}
+}
+struct SPUUpdatedDelegate
+{
+}
+struct SPUUserDriverDelegate
+{
+}
+struct SPUStandardUpdaterController
+{
+	var startingUpdater : Bool
+	var updaterDelegate: SPUUpdatedDelegate?
+	var userDriverDelegate : SPUUserDriverDelegate?
+	var updater = SPUUpdater()
+}
+#endif
+
 
 private struct UpdaterKey: EnvironmentKey {
     static let defaultValue: SPUUpdater? = nil

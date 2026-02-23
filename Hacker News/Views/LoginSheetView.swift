@@ -54,7 +54,9 @@ struct LoginSheetView: View {
             resetUsername = username
             showingForgotPassword = true
         }
+#if canImport(AppKit)
         .buttonStyle(.link)
+#endif
         .font(.caption)
 
         Divider()
@@ -126,7 +128,9 @@ struct LoginSheetView: View {
             authManager.resetError = nil
             authManager.resetSuccess = false
         }
+#if canImport(AppKit)
         .buttonStyle(.link)
+#endif
         .font(.caption)
 
         Button("Cancel", role: .cancel) {

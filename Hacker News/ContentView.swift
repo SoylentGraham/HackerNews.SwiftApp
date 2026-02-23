@@ -67,27 +67,46 @@ struct ContentView: View {
         return "Homepage"
     }
 
-    private struct WindowTabTitleSetter: NSViewRepresentable {
+	private struct WindowTabTitleSetter: NSViewRepresentable {
+		typealias UIViewType = NSView
+		typealias NSViewType = NSView
+		
         let title: String
 
-        func makeNSView(context: Context) -> NSView {
-            let view = NSView()
-            DispatchQueue.main.async {
-                view.window?.tab.title = title
-            }
-            return view
-        }
+		func makeNSView(context: Context) -> NSViewType {
+			let view = NSView()
+			DispatchQueue.main.async {
+#if canImport(AppKit)
+				view.window?.tab.title = title
+#endif
+			}
+			return view
+		}
+		
+		func makeUIView(context: Context) -> UIViewType {
+			return makeNSView(context: context)
+		}
 
-        func updateNSView(_ nsView: NSView, context: Context) {
-            nsView.window?.tab.title = title
-        }
+		func updateNSView(_ nsView: NSView, context: Context) 
+		{
+			#if canImport(AppKit)
+			nsView.window?.tab.title = title
+			#endif
+		}
+		func updateUIView(_ nsView: NSViewType, context: Context) {
+			updateNSView(nsView,context: context)
+		}
     }
 
-    private func applyAppearance(_ mode: AppearanceMode) {
-        switch mode {
-        case .light: NSApp.appearance = NSAppearance(named: .aqua)
-        case .dark: NSApp.appearance = NSAppearance(named: .darkAqua)
-        case .system: NSApp.appearance = nil
-        }
+    private func applyAppearance(_ mode: AppearanceMode) 
+	{
+#if canImport(UIKit)
+		UIApplication.shared.windows.first?.overrideUserInterfaceStyle = mode.uiUserInterfaceStyle
+#endif
+
+		//	gr: there must be an ios version of this...
+#if canImport(AppKit)
+		NSApp.appearance = mode.nsAppearance
+#endif
     }
 }
